@@ -6,22 +6,23 @@ const frames = createFrames({
 });
 
 const handleRequest = frames(async (ctx) => {
-  // Removed redirect logic
-  // if (ctx.pressedButton?.action === "post_redirect") {
-  //   return redirect("https://k-marry-f.com");
-  // }
-
   const response = await fetch("https://www.k-marry-f.com/api/getPics");
   const data = await response.json();
   const imageUrl = data.url;
 
   return {
-    image: <img src={imageUrl} alt="Fetched from API" />,
+    image: (
+      <img 
+        src={imageUrl} 
+        alt="Fetched from API" 
+        style={{ width: '100%', height: 'auto', aspectRatio: '1 / 1' }} // Set aspect ratio to 1:1
+      />
+    ),
     buttons: [
       <Button action="post">Kiss</Button>,
       <Button action="post">Marry</Button>,
       <Button action="post">Fade</Button>,
-      <Button action="post_redirect">Play</Button>, // Redirect button removed
+      <Button action="post_redirect">Play</Button>,
     ],
   };
 });
