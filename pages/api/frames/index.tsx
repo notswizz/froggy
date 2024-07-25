@@ -10,12 +10,21 @@ const handleRequest = frames(async (ctx) => {
   const data = await response.json();
   const imageUrl = data.url;
 
+  // Return the frame with the required meta tags
   return {
+    head: (
+      <>
+        <meta property="fc:frame" content="vNext" />
+        <meta property="fc:frame:image" content={imageUrl} />
+        <meta property="fc:frame:image:aspect_ratio" content="1:1" /> {/* Set aspect ratio to 1:1 */}
+        <meta property="og:image" content={imageUrl} />
+      </>
+    ),
     image: (
       <img 
         src={imageUrl} 
         alt="Fetched from API" 
-        style={{ width: '100%', height: 'auto', aspectRatio: '1 / 1' }} // Set aspect ratio to 1:1
+        style={{ width: '100%', height: 'auto', aspectRatio: '1 / 1' }} // Maintain 1:1 aspect ratio
       />
     ),
     buttons: [
