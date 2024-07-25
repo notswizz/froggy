@@ -4,7 +4,7 @@ import {
   fetchMetadata,
   metadataToMetaTags,
 } from "frames.js/next/pages-router/client";
- 
+
 export const getServerSideProps = async function getServerSideProps() {
   return {
     props: {
@@ -21,7 +21,7 @@ export const getServerSideProps = async function getServerSideProps() {
 } satisfies GetServerSideProps<{
   metadata: Awaited<ReturnType<typeof fetchMetadata>>;
 }>;
- 
+
 export default function Page({
   metadata,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
@@ -31,6 +31,11 @@ export default function Page({
         <title>Frames.js app</title>
         {metadataToMetaTags(metadata)}
       </Head>
+      <iframe
+        src="https://k-marry-f.com"
+        style={{ width: '100%', height: '100vh', border: 'none' }} // Full width and height
+        title="K Marry F"
+      />
     </>
   );
 }
